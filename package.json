@@ -1,0 +1,69 @@
+{
+  "name": "strava-mcp",
+  "version": "0.0.1",
+  "description": "Strava MCP Server",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "strava-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:fix": "prettier --write .",
+    "prepare": "npm run build",
+    "watch": "tsup --watch",
+    "build": "rimraf dist && tsup src/index.ts --format cjs,esm --dts && shx chmod +x dist/index.js",
+    "start": "node dist/index.js",
+    "dev": "node --loader ts-node/esm src/index.ts",
+    "dev:inspect": "npx @modelcontextprotocol/inspector node --loader ts-node/esm src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmarescu/strava-mcp.git"
+  },
+  "keywords": [
+    "strava",
+    "api",
+    "mcp",
+    "modelcontextprotocol",
+    "server"
+  ],
+  "author": "Razvan Marescu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rmarescu/strava-mcp/issues"
+  },
+  "homepage": "https://github.com/rmarescu/strava-mcp#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.8.0",
+    "dotenv": "^16.4.7",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.2.8",
+    "@eslint/js": "^9.23.0",
+    "@types/node": "^22.13.17",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
+    "@typescript-eslint/parser": "^8.29.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-import-resolver-typescript": "^4.3.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "prettier": "^3.2.5",
+    "rimraf": "^6.0.1",
+    "shx": "^0.4.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.29.0"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "npm run lint:fix",
+    "*.{json,md}": "npm run format:fix"
+  }
+}
